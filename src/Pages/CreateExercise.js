@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import '../index.css'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
+import axios from 'axios';
 
 
 
@@ -12,75 +13,81 @@ const form = {
 
 const CreateExercise = () => {
 
+ 
+  const [userName, setUserName] = useState('');
+  // const [exerciseName, setExerciseName] = useState('');
+  const [desc, setDesc] = useState('');
+  const [durat, setDurat] = useState(0);
   const [startDate, setStartDate] = useState(new Date());
-  const [exercise, setExercise] = useState({
-    username: '',
-    desc: '',
-    getDuration: 0,
-    date: new Date(),
-    users: []
-  })
 
-  let getUsername ='';
-  let getDesc ='';
-  let getDuration =0;
-  let getDate = startDate;
-  let getUsers = [];
 
-  const onChangeUsername = (e) => {
-    getUsername = e.target.value
-  }
-  const onChangeDesc = (e) => {
-    getDesc = e.target.value
-  }
-  const onChangeDuratioin = (e) => {
-    getDuration = e.target.value
-  }
-  const onChangeUsers = (e) => {
-    getUsers = e.target.value
+  const onChangeUsername = (e)=>{
+    setUserName(e.target.value);
   }
 
-  const onSubmit =(e)=>{
-    e.preventDefault();
-
-    setExercise({
-      username: getUsername,
-      desc: getDesc,
-      duration: getDuration,
-      date: getDate,
-      users: getUsers
-    });
-
-    window.location = '/'
+  const onChangeDescription = (e)=>{
+    setDesc(e.target.value);
   }
+  const onChangeDuration = (e)=>{
+    setDurat(e.target.value);
+  }
+
+
+  const onSubmit =()=>{
+    // e.preventDefault();
+
+    const exercise ={
+      username: userName,
+      description: desc,
+      duration: durat,
+      date: startDate
+
+    }
+
+    axios.post('http://localhost:5000/exercises/add', exercise)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
+    // window.location = '/'
+
+    console.log('Exercise submitted...');
+  }
+
+
 
 
   return (
     <div className='backgroundimg'>
       <form style={{display: 'flex', flexDirection: 'column', width: '30rem', margin:'auto',
                textAlign:'left', position: 'relative', top: '10rem', backdropFilter: 'blur(100px)',
-              paddding: '1rem', borderRadius: '1rem'
-               }}>
-        <div style={{display: 'flex', fontSize: '1.5rem', lineHeight: '3.5rem', paddingLeft: '0.5rem'}}>
-          Exercise:
-          <input style={form} onChange={onChangeUsername} />
+              paddding: '1rem', borderRadius: '1rem', outline: 'none'
+        }}>
+
+        <div style={{display: 'flex', fontSize: '1.5rem', lineHeight: '2rem', padding: '0.5rem', marginTop: '1rem'}}>
+          Username:
+          <input 
+            // required
+            style={{background: 'transparent', border: '2px solid magenta', marginLeft: '1rem', width: '70%'}}
+            value={userName}
+            onChange={onChangeUsername}
+            />
         </div>
 
         <div style={{display: 'flex', fontSize: '1.5rem', lineHeight: '3.5rem',paddingLeft: '0.5rem'}}>
           Description:
-          <input style={form} onChange={onChangeDesc} />
+          <input style={form} value={desc} onChange={onChangeDescription} />
         </div>
 
         <div style={{display: 'flex', fontSize: '1.5rem', lineHeight: '3.5rem',paddingLeft: '0.5rem'}}>
           Duration:
-          <input style={form} onChange={onChangeDuratioin} />
+          <input style={form} value={durat} onChange={onChangeDuration} />
         </div>
 
         <div style={{display: 'flex', fontSize: '1.5rem', lineHeight: '2rem',padding: '0.5rem',}}>
           Date:
-          <DatePicker selected={getDate} onChange={(date) => setStartDate(date)} className='date' />
+          <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} className='date' />
         </div>
-      <button style={{border: '2px solid magenta', borderRadius: '0.25rem', background: 'transparent', padding:'0.3rem', width: 'fit-content', margin: 'auto', marginBottom: '2rem' }} onClick={onSubmit} >Create Exercise</button>
+      <button style={{border: '2px solid magenta', borderRadius: '0.25rem', background: 'transparent', padding:'0.3rem', width: 'fit-content', margin: 'auto', marginBottom: '2rem' }} 
+      onClick={()=>onSubmit()} >Create Exercise</button>
 
       </form>
     </div>

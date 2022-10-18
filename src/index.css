@@ -22,6 +22,11 @@
   background-image: url('./assets/wallpaperflare.com_wallpaper\ \(3\).jpg');
   background-size: cover;
 }
+.createUser{
+  height: 94vh;
+  background-image: url('./assets/wallpaperflare.com_wallpaper\ \(4\).jpg');
+  background-size: cover;
+}
 
 .date{
   background: transparent;
@@ -31,7 +36,9 @@
   margin-left: 1.5rem;
   margin-bottom: 1.5rem;
 }
-
+::-webkit-scrollbar {
+  display: none;
+}
 
 
 
