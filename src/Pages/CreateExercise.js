@@ -1,12 +1,18 @@
 import React, { useState } from 'react'
 import '../index.css'
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
+
+
+
 const form = {
-  height: '2rem', width: '100%', background: 'transparent', margin: '1rem', borderRadius: '0.5rem', border: '2px solid black' 
+  height: '2rem', width: '100%', background: 'transparent', margin: '1rem', borderRadius: '0.5rem', border: '2px solid magenta' 
 }
 
 
 const CreateExercise = () => {
 
+  const [startDate, setStartDate] = useState(new Date());
   const [exercise, setExercise] = useState({
     username: '',
     desc: '',
@@ -18,7 +24,7 @@ const CreateExercise = () => {
   let getUsername ='';
   let getDesc ='';
   let getDuration =0;
-  let getDate = new Date();
+  let getDate = startDate;
   let getUsers = [];
 
   const onChangeUsername = (e) => {
@@ -29,9 +35,6 @@ const CreateExercise = () => {
   }
   const onChangeDuratioin = (e) => {
     getDuration = e.target.value
-  }
-  const onChangeDate = (e) => {
-    getDate = e.target.value
   }
   const onChangeUsers = (e) => {
     getUsers = e.target.value
@@ -73,6 +76,10 @@ const CreateExercise = () => {
           <input style={form} onChange={onChangeDuratioin} />
         </div>
 
+        <div style={{display: 'flex', fontSize: '1.5rem', lineHeight: '2rem',padding: '0.5rem',}}>
+          Date:
+          <DatePicker selected={getDate} onChange={(date) => setStartDate(date)} className='date' />
+        </div>
       <button style={{border: '2px solid magenta', borderRadius: '0.25rem', background: 'transparent', padding:'0.3rem', width: 'fit-content', margin: 'auto', marginBottom: '2rem' }} onClick={onSubmit} >Create Exercise</button>
 
       </form>

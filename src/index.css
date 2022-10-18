@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;600&display=swap');
 
 *{
   margin: 0;
@@ -22,7 +23,14 @@
   background-size: cover;
 }
 
-
+.date{
+  background: transparent;
+  border: 2px solid magenta;
+  border-radius: 0.5rem;
+  width: 92%;
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
 
 
 
@@ -30,9 +38,8 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Kanit', sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
