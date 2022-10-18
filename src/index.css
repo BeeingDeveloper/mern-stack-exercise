@@ -1,3 +1,33 @@
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style-type: none;
+}
+.a{
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.backgroundimg{
+  height: 94vh;
+  background-image: url('./assets/wallpaperflare.com_wallpaper.jpg');
+  background-size: cover;
+}
+.exerciseList{
+  height: 94vh;
+  background-image: url('./assets/wallpaperflare.com_wallpaper\ \(3\).jpg');
+  background-size: cover;
+}
+
+
+
+
+
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

@@ -1,8 +1,10 @@
 import React from 'react'
-
+import '../index.css'
 const ExerciseList = () => {
   return (
-    <div>ExerciseList</div>
+    <div className='exerciseList'>
+      
+    </div>
   )
 }
 
